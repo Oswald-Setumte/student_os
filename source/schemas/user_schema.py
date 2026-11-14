@@ -7,15 +7,17 @@ class Role(str, Enum):
     admin = "admin",
     super_admin = "super_admin"
 
-class Register_user_response(BaseModel):
+class User_base(BaseModel):
     first_name: str
     last_name:str
     email: EmailStr
+
+class Register_user_response(User_base):
     role:Role = Role.student
 
-class Register_user(Register_user_response):
+class Register_user(User_base):
     password: str
 
 class Login_response(BaseModel):
     token:str
-    type: str = "baerer"
+    type: str = "bearer"

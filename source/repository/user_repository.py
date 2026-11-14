@@ -17,9 +17,8 @@ class UserRepository():
         await self.__session.refresh(user)
         return user
 
-    @property
     async def get_all_user(self):
         users = await self.__session.execute(select(User))
-        return users.scalars().all()
+        return list(users.scalars().all())
 
     

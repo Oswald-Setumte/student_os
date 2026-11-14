@@ -24,15 +24,11 @@ async def login(user:Annotated[OAuth2PasswordRequestForm, Depends()], db:Annotat
 
 @router.get("/me", response_model=Register_user_response)
 async def me(user:protected, db:Annotated[AsyncSession, Depends(get_session)]):
-    if user:
-        services = UserServices(session=db)
-        return await services.get_me(user=user.email)
-        
+    services = UserServices(session=db)
+    return await services.get_me(user=user.email)
+
 @router.get("/all_user", response_model=list[Register_user_response])
 async def all_users(user:protected, db:Annotated[AsyncSession, Depends(get_session)]):
-    if user:
-        services = UserServices(session=db)
-        return await services.get_all_users
-    else:
-        raise "oswald"
+    services = UserServices(session=db)
+    return await services.get_all_users()
 

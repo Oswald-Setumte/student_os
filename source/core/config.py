@@ -10,7 +10,7 @@ class settings(BaseSettings):
     database_url:str
     access_token_algorithm:str
     access_token_secret:SecretStr
-    access_token_expires:int=30
+    access_token_expires:int=30  # minutes
 
 
 

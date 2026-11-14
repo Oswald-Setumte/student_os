@@ -23,7 +23,7 @@ def verify_password(user_password:str, hashed_password:str):
 def create_access_token(user_data:dict[str, Any], expire:timedelta|None = None):
     user_data_copy = user_data.copy()
     if expire is None:
-        expires = expires = datetime.now(UTC) + timedelta(setting.access_token_expires)
+        expires = datetime.now(UTC) + timedelta(minutes=setting.access_token_expires)
     else:
         expires = datetime.now(UTC) + expire
     user_data_copy.update({"exp": expires})
