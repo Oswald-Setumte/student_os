@@ -6,6 +6,13 @@ __pycache__/
 # C extensions
 *.so
 
+# Uploaded classroom materials and submissions
+uploads/
+
+# Generated documentation and helper scripts
+docs/
+scripts/
+
 # Distribution / packaging
 .Python
 build/
@@ -26,10 +33,8 @@ share/python-wheels/
 *.egg
 MANIFEST
 # .gitignore
-# Ignore Alembic migration versions
-alembic/versions/
-# Ignore Alembic configuration file (contains DB credentials)
-alembic.ini
+# Alembic migrations and config are tracked so every environment can upgrade.
+# The real database URL is loaded from .env by alembic/env.py, not alembic.ini.
 
 # PyInstaller
 #   Usually these files are written by a python script from a template
