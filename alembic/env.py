@@ -3,6 +3,7 @@ import selectors
 from logging.config import fileConfig
 from source.database.base import Base
 from source.models.user_model import User #type:ignore
+from source.models.lecture_model import Assessment, Classroom, ClassroomMaterial, ClassroomMember, Submission #type:ignore
 
 from sqlalchemy import pool
 from sqlalchemy.engine import Connection

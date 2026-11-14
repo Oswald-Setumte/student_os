@@ -7,6 +7,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from datetime import datetime, UTC, timedelta, timezone
 from source.core.config import setting
 from source.models.user_model import User
+from source.schemas.user_schema import Role
 from source.database.session import get_session
 from jwt.exceptions import InvalidTokenError
 import jwt
@@ -53,4 +54,17 @@ async def get_current_user(user_data:Annotated[HTTPAuthorizationCredentials, Dep
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
     return existing_user
 
+
+async def get_current_lecturer(user: protected) -> User:
+    if user.role != Role.lecture:
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Lecturer access required")
+    return user
+
+async def get_current_student(user: protected) -> User:
+    if user.role != Role.student:
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Student access required")
+    return user
+
 protected = Annotated[User, Depends(get_current_user)]
+lecturer = Annotated[User, Depends(get_current_lecturer)]
+student = Annotated[User, Depends(get_current_student)]

@@ -11,6 +11,8 @@ class settings(BaseSettings):
     access_token_algorithm:str
     access_token_secret:SecretStr
     access_token_expires:int=30  # minutes
+    upload_dir:str="uploads"
+    max_upload_size_mb:int=50
 
 
 
